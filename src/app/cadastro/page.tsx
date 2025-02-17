@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
-export default function LoginPage() {
+export default function Cadastro() {
   return (
     <div className=" w-screen h-screen  bg-slate-300 flex justify-center items-center">
       <div className="bg-slate-200 w-[500px] h-[500px] text-center">
@@ -28,7 +28,7 @@ export default function LoginPage() {
           </div>
 
           <form className="space-y-4 p-6">
-            <h1 className="">Membros</h1>
+            <h1 className="">Torne-se um membro agora!</h1>
             <input
               className="w-full p-2 rounded-md"
               type="email"
@@ -39,22 +39,26 @@ export default function LoginPage() {
               type="password"
               placeholder="Senha"
             />
+            <input
+              className="w-full p-2 rounded-md"
+              type="password"
+              placeholder="Confirme sua Senha"
+            />
             <button
               className="w-full p-2 rounded-md bg-slate-400"
               type="submit"
             >
-              Entrar
+              Cadastrar
             </button>
-            <h3 className="text-right">Esqueceu sua senha?</h3>
           </form>
           <div className=" pl-6 pr-6 space-y-2">
-            <h1>Ainda não é um membro?</h1>
-            <Link href="/cadastro">
+            <h1>Já é um membro?</h1>
+            <Link href="/login">
               <button
                 className="w-full p-2 rounded-md bg-slate-300"
                 type="submit"
               >
-                Cadastre-se
+                Logar
               </button>
             </Link>
           </div>
