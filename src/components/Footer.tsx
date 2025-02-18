@@ -101,27 +101,28 @@ function Footer() {
               />
               Facebook
             </a>
+            <div>
+              <a
+                className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+                href="https://www.linkedin.com/in/bruno-coelho-13009a207/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  aria-hidden
+                  src="/globe.svg"
+                  alt="Globe icon"
+                  width={16}
+                  height={16}
+                />
+                Bruno Coelho.
+              </a>
+            </div>
           </div>
         </div>
       </div>
       <div className="flex justify-center">
-        <p>© Copyright 2024</p>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://www.linkedin.com/in/bruno-coelho-13009a207/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Bruno Coelho.
-        </a>
-        <p>All rights reserved.</p>
+        <p>&copy; 2025 Bonela Cursos. All rights reserved.</p>
       </div>
     </div>
   );
