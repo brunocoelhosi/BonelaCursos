@@ -1,13 +1,33 @@
+"use client";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Cursos from "@/components/Cursos";
+import InfoPlataforma from "@/components/InfoPlataforma";
+
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+
+const images: string[] = [];
+for (let i = 1; i <= 10; i++) {
+  // Supondo que tenha 10 imagens
+  images.push(`/brasoes/${i}.png`);
+}
 
 export default function Home() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-
-      <main className="flex flex-col gap-8 row-start-2 flex-1 min-h-screen  bg-slate-200 ">
+      <main className="flex flex-col gap-8 flex-1 min-h-screen bg-slate-200">
         {/* Hero Section */}
         <section className="relative bg-gradient-to-r from-slate-800 to-slate-500 text-white py-24 text-center">
           <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-center text-center md:text-left">
@@ -33,10 +53,24 @@ export default function Home() {
                 priority
               />
             </div>
-            <div className="md:w-1/5 mt-8 md:mt-0">
-              <h1 className="text-5xl font-extrabold">
-                Torne-se um Delegado de Sucesso
-              </h1>
+            <div className="md:w-1/5 mt-8 md:mt-0 relative overflow-hidden ">
+              <motion.div
+                className="flex space-x-4"
+                animate={{ x: `-${currentIndex * 100}%` }}
+                transition={{ ease: "easeInOut", duration: 1 }}
+              >
+                {images.map((src, index) => (
+                  <div key={index} className="flex-shrink-0 w-full text-center">
+                    <Image
+                      className="rounded-lg"
+                      src={src}
+                      alt={`Logo ${index + 1}`}
+                      width={200}
+                      height={200}
+                    />
+                  </div>
+                ))}
+              </motion.div>
               <p className="mt-6 text-lg max-w-2xl">
                 Cursos completos para sua preparação com os melhores
                 especialistas.
@@ -44,27 +78,8 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        {/* Catálogo de Cursos */}
-        <section className="py-20 px-8 text-center container mx-auto">
-          <h2 className="text-4xl font-bold text-gray-800">Nossos Cursos</h2>
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((id) => (
-              <div
-                key={id}
-                className="bg-white p-8 shadow-xl rounded-xl transform hover:scale-105 transition duration-300"
-              >
-                <h3 className="text-2xl font-semibold text-gray-900">
-                  Curso {id}
-                </h3>
-                <p className="text-gray-600 mt-4">Descrição breve do curso.</p>
-                <button className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-full shadow-md hover:bg-blue-500 transition duration-300">
-                  Saiba Mais
-                </button>
-              </div>
-            ))}
-          </div>
-        </section>
+        <Cursos />
+        <InfoPlataforma />
       </main>
       <Footer />
     </div>
