@@ -1,31 +1,13 @@
-"use client";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Cursos from "@/components/Cursos";
-import InfoPlataforma from "@/components/InfoPlataforma";
-
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-
-const images: string[] = [];
-for (let i = 1; i <= 10; i++) {
-  // Supondo que tenha 10 imagens
-  images.push(`/brasoes/${i}.png`);
-}
+import Carrousel from "@/components/Carrousel";
+import PlatformInfo from "@/components/PlatformInfo";
 
 export default function Home() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <div className="flex flex-col min-h-screen">
+    <div id="home" className="flex flex-col min-h-screen">
       <Navbar />
       <main className="flex flex-col gap-8 flex-1 min-h-screen bg-slate-200">
         {/* Hero Section */}
@@ -53,33 +35,11 @@ export default function Home() {
                 priority
               />
             </div>
-            <div className="md:w-1/5 mt-8 md:mt-0 relative overflow-hidden ">
-              <motion.div
-                className="flex space-x-4"
-                animate={{ x: `-${currentIndex * 100}%` }}
-                transition={{ ease: "easeInOut", duration: 1 }}
-              >
-                {images.map((src, index) => (
-                  <div key={index} className="flex-shrink-0 w-full text-center">
-                    <Image
-                      className="rounded-lg"
-                      src={src}
-                      alt={`Logo ${index + 1}`}
-                      width={200}
-                      height={200}
-                    />
-                  </div>
-                ))}
-              </motion.div>
-              <p className="mt-6 text-lg max-w-2xl">
-                Cursos completos para sua preparação com os melhores
-                especialistas.
-              </p>
-            </div>
+            <Carrousel />
           </div>
         </section>
         <Cursos />
-        <InfoPlataforma />
+        <PlatformInfo />
       </main>
       <Footer />
     </div>

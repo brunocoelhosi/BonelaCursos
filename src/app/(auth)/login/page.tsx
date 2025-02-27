@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 export default function LoginPage() {
   return (
     <div className=" w-screen h-screen  bg-slate-300 flex justify-center items-center">
-      <div className="bg-slate-200 w-[500px] h-[500px] text-center">
+      <div className="bg-slate-200 w-[500px] h-[500px] text-center rounded-2xl ">
         <div className="space-y-4 p-8 rounded-md ">
           <div className="flex justify-between">
             <Link href="/">
@@ -27,7 +27,7 @@ export default function LoginPage() {
             <div className="w-8"></div>
           </div>
 
-          <form className="space-y-4 p-6">
+          <form className="space-y-3 p-6 ">
             <h1 className="">Membros</h1>
             <input
               className="w-full p-2 rounded-md"

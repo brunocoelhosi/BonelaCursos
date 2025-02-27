@@ -1,7 +1,10 @@
 import Image from "next/image";
-export default function InfoPlataforma() {
+export default function PlatformInfo() {
   return (
-    <section className="py-20 px-8 text-center container mx-auto">
+    <section
+      id="info-plataforma"
+      className=" py-20 px-8 text-center container mx-auto"
+    >
       <h2 className="text-4xl font-bold text-gray-800">Nossa Plataforma</h2>
 
       <div className="mt-12  flex flex-col md:flex-row gap-20 justify-center">
@@ -15,7 +18,7 @@ export default function InfoPlataforma() {
             com professores, exercicios, materiais de apoio e muito mais
           </p>
           <button className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-full shadow-md hover:bg-blue-500 transition duration-300">
-            Saiba mais e Matricule-se Já!
+            Conheça nossa plataforma!
           </button>
         </div>
 
