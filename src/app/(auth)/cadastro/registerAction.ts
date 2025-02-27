@@ -1,7 +1,7 @@
 "use client";
 
 export default async function handleCadastro(
-  _prevState: any,
+  _prevState: { message: string; success: boolean } | null | undefined,
   formData: FormData
 ) {
   const data = {
