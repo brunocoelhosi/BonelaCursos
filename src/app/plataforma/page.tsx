@@ -1,6 +1,14 @@
-import NavbarPlataforma from "@/app/plataforma/navbar";
+import NavbarPlataforma from "./navbar";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
-export default function Platform() {
+export default async function Platform() {
+  const session = await auth();
+
+  if (!session) {
+    return redirect("/login");
+  }
+
   return (
     <div>
       <NavbarPlataforma />

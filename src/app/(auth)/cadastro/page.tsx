@@ -2,10 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { ArrowLeft } from "lucide-react";
-
 import FormCadastro from "./FormCadastro";
 
-export default function Cadastro() {
+import { auth } from "../../../../auth";
+import { redirect } from "next/navigation";
+
+export default async function Cadastro() {
+  const session = await auth();
+
+  if (session) {
+    return redirect("/plataforma");
+  }
+
   return (
     <div className=" w-screen h-screen  bg-slate-300 flex justify-center items-center">
       <div className="bg-slate-200 w-[500px] h-[600px] text-center rounded-2xl">

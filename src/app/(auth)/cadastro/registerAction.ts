@@ -1,6 +1,6 @@
-"use client";
+"use server";
 
-export default async function handleCadastro(
+export default async function registerAction(
   _prevState: { message: string; success: boolean } | null | undefined,
   formData: FormData
 ) {
@@ -28,12 +28,13 @@ export default async function handleCadastro(
     const result = await response.json();
 
     if (response.ok) {
-      // Tratar sucesso
-      return { message: "Cadastro realizado com sucesso", success: true };
-      console.log("Cadastro realizado com sucesso!", result);
+      return {
+        success: true,
+        message: "Cadastro Realizado com Sucesso",
+        redirectTo: "/login",
+      };
     } else {
-      // Tratar erro se a resposta não for ok
-      console.log("Erro ao cadastrar:", result.message);
+      return { message: result.message, success: false };
     }
   } catch (error) {
     console.error("Erro ao cadastrar. Tente novamente.", error);

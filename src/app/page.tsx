@@ -1,9 +1,9 @@
 import Image from "next/image";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import Cursos from "@/components/Cursos";
-import Carrousel from "@/components/Carrousel";
-import PlatformInfo from "@/components/PlatformInfo";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import Cursos from "../components/Cursos";
+import Carrousel from "../components/Carrousel";
+import PlatformInfo from "../components/PlatformInfo";
 
 export default function Home() {
   return (

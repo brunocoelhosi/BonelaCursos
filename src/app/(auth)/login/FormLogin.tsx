@@ -1,20 +1,10 @@
 "use client";
 import Form from "next/form";
+import loginAction from "./loginAction";
 import { useActionState } from "react";
-import registerAction from "./registerAction";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-
-export default function FormCadastro() {
-  const [state, formAction, isPending] = useActionState(registerAction, null);
-  const router = useRouter();
-
-  useEffect(() => {
-    if (state?.success && state?.redirectTo) {
-      router.push(state.redirectTo);
-    }
-  }, [state, router]);
+export default function FormLogin() {
+  const [state, formAction, isPending] = useActionState(loginAction, null);
 
   return (
     <>
@@ -22,6 +12,7 @@ export default function FormCadastro() {
         <div className="min-h-[40px]">
           {state?.success === false && (
             <div className="text-xs bg-red-100  text-red-700 border-red-400 rounded-md relative  p-2 ">
+              <strong>Erro! </strong>
               {state?.message}
             </div>
           )}
@@ -32,13 +23,7 @@ export default function FormCadastro() {
           )}
         </div>
 
-        <h1 className="">Torne-se um membro agora!</h1>
-        <input
-          name="name"
-          className="w-full p-2 rounded-md"
-          type="nome"
-          placeholder="Nome"
-        />
+        <h1 className="">Membros</h1>
         <input
           name="email"
           className="w-full p-2 rounded-md"
@@ -51,19 +36,14 @@ export default function FormCadastro() {
           type="password"
           placeholder="Senha"
         />
-        <input
-          name="password-verify"
-          className="w-full p-2 rounded-md"
-          type="password"
-          placeholder="Confirme sua Senha"
-        />
         <button
           disabled={isPending}
           className="w-full p-2 rounded-md bg-slate-400"
           type="submit"
         >
-          Cadastrar
+          Entrar
         </button>
+        <h3 className="text-right">Esqueceu sua senha?</h3>
       </Form>
     </>
   );
