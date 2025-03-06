@@ -2,7 +2,10 @@
 import { signIn } from "@/auth";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 
-export default async function handleLogin(_prevState: any, formData: FormData) {
+export default async function handleLogin(
+  _prevState: { message: string; success: boolean } | null | undefined,
+  formData: FormData
+) {
   try {
     await signIn("credentials", {
       email: formData.get("email"),
@@ -10,14 +13,18 @@ export default async function handleLogin(_prevState: any, formData: FormData) {
       redirect: true,
       redirectTo: "/plataforma",
     });
-    console.log("teste");
+
     return { success: true, message: "Login efetuado com sucesso" };
   } catch (error) {
-    console.log(error);
     if (isRedirectError(error)) {
       throw error;
     }
-    if (error.type === "CredentialSignin") {
+
+    if (
+      error instanceof Error &&
+      "type" in error &&
+      error.type === "CredentialSignin"
+    ) {
       return {
         success: false,
         message: "Dados de login incorretos",
